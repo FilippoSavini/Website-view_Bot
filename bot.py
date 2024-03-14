@@ -5,18 +5,35 @@ from selenium.webdriver.common.by import By
 
 def visit_website(url):
     try:
-        driver = webdriver.Chrome()
+        # Setup the Chrome options to start maximized
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument("--headless")  # Run in headless mode (without opening browser window)
+        
+        
+        # Initialize the Chrome driver with the configured options
+        driver = webdriver.Chrome(options=chrome_options)
+        
         driver.get(url)
         time.sleep(5)
+        
+        # Find the website
         search_box = driver.find_element(by = By.NAME, value='q')
-        search_box.send_keys("Agriturismo Ben Ti Voglio")
+        search_box.send_keys("Agriturismo Ben Ti Voglio official website")
         search_box.submit()
-        # Find the "Images" link
+        
+        # Find the website link
         site_link = driver.find_element(by=By.PARTIAL_LINK_TEXT, value="Agriturismo Ben Ti Voglio - Official Website")
-        # Click on the "Images" link
         site_link.click()
+        
         # Wait for the page to load
         time.sleep(5)
+        
+        # Realize one action
+        chi_siamo_link = driver.find_element(By.XPATH, "//a[contains(text(), 'Chi siamo')]")
+        chi_siamo_link.click()
+        time.sleep(10)
+        
         print(f"Successfully visited {url}")
         driver.quit()
     except Exception as e:
