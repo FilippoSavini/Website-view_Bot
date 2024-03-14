@@ -19,11 +19,11 @@ def visit_website(url):
         
         # Find the website
         search_box = driver.find_element(by = By.NAME, value='q')
-        search_box.send_keys("Agriturismo Ben Ti Voglio official website")
+        search_box.send_keys("What to search")
         search_box.submit()
         
         # Find the website link
-        site_link = driver.find_element(by=By.PARTIAL_LINK_TEXT, value="Agriturismo Ben Ti Voglio - Official Website")
+        site_link = driver.find_element(by=By.PARTIAL_LINK_TEXT, value="Website name")
         site_link.click()
         
         # Wait for the page to load
